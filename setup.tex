@@ -1,0 +1,18 @@
+% Language
+\usepackage[english]{babel}
+% Graphics
+\usepackage[pdftex]{graphicx}
+\graphicspath{{./figures/}}
+\DeclareGraphicsExtensions{.pdf,.jpg,.jpeg,.png}
+% Math
+\usepackage[cmex10]{amsmath}
+\interdisplaylinepenalty=2500{}
+% Floats
+\usepackage{booktabs,multirow}
+\usepackage[caption=false,font=footnotesize]{subfig}
+% Useful Macros
+\newcommand{\sref}[1]{Section~\ref{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand\mat[1]{\boldsymbol{#1}}
+\newcommand\vect[1]{\boldsymbol{#1}}
+\newcommand\matop[2]{\boldsymbol{#1}\left({#2}\right)}
