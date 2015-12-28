@@ -9,7 +9,7 @@
 \interdisplaylinepenalty=2500{}
 % Floats
 \usepackage{booktabs,multirow}
-\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage[caption=true,font=footnotesize]{subfig}
 % Useful Macros
 \newcommand{\sref}[1]{Section~\ref{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
@@ -19,3 +19,11 @@
 % Tikz
 \usepackage{tikz}
 \usepackage[american,siunitx]{circuitikz}
+% Exercises environment
+\usepackage{exsheets}
+\SetupExSheets{
+  question/print = true ,
+  solution/print = true ,
+  counter-format = ch.qu ,
+  counter-within = chapter
+}
