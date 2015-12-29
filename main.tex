@@ -1,4 +1,4 @@
-\documentclass{memoir}
+\documentclass[10pt,a4paper]{memoir}
 \input{setup.tex}
 
 \title{MA2009: Introduction to Electrical Circuit and Electronic Device}
@@ -10,31 +10,101 @@
 
 \chapter{Circuits Fundamentals}
 
+% T1.1
 \begin{question}
   \textbf{Kirchhoff's Laws}
-  \begin{figure}[h]
+  \begin{figure}[!h]
     \centering
-    \begin{circuitikz}[scale=0.75,transform shape] \draw
-      (0,0) node[ground] {} to[short,*-]  (0,1)
-            to[V,v=5<\volt>]    (0,3) -- (0,4) -- (1,4)
-            to[R,v=3<\volt>]    (3,4) -- (4,4) to[short,*-] (4,3)
-            to[R,v=$v_2$]       (4,1) -- (4,0) -- (0,0)
-      (5,4) to[R=$R$,v>=10<\volt>]    (7,4)
-      (8,1) to[I=3<\ampere>,v>=$v_1$] (8,3) -- (8,4) -- (7,4)
-      (4,4) -- (5,4)
-      (8,1) -- (8,0) to[short,-*] (4,0);
+    \begin{circuitikz}[scale=1.25] \draw
+      (0,0) to[V,v=5<\volt>]            (0,2)
+            to[R,v^=3<\volt>]           (2,2)
+            to[R,v=$v_2$]               (2,0) 
+            node[ground]{} to[short,*-] (0,0)
+      (2,0) to[short,*-]                (4,0)
+            to[I=3<\ampere>,v>=$v_1$]   (4,2)
+            to[R=$R$,v=10<\volt>,-*]    (2,2);
     \end{circuitikz}
     \caption{}
     \label{fig:T1-1}
   \end{figure}
   \begin{enumerate}
     \item Identify loop and meshes in the circuit of \fref{fig:T1-1}.
-    \item Apply KVL to find voltage $v_1$ and $v_2$.
+    \item Apply \ac{kvl} to find voltages $v_1$ and $v_2$.
   \end{enumerate}
 \end{question}
-
 \begin{solution}
- The answer goes here...
+  \begin{figure}[!h]
+    \centering
+    \begin{circuitikz}[scale=1.25] \draw
+      (0,0) to[V,v=$v_s$]               (0,2)
+            to[R,v^=$v_3$]              (2,2)
+            to[R,v=$v_2$]               (2,0) 
+            node[ground]{} to[short,*-] (0,0)
+      (2,0) to[short,*-]                (4,0)
+            to[I,v>=$v_1$]              (4,2)
+            to[R,v=$v_4$,-*]    (2,2);
+      \draw[thin,<-,>=triangle 45,blue] (1,1) node{\circled{1}}  ++(-60:0.5) arc (-60:170:0.5);
+      \draw[thin, <-,>=triangle 45,blue] (3,1) node{\circled{2}}  ++(-60:0.5) arc (-60:170:0.5);
+      \draw[thin, <-,>=triangle 45,red] (2,1) [partial ellipse=-30:180:3 and 1.75];
+      \node[red] at (2,2.5) {\circled{3}};
+    \end{circuitikz}
+  \end{figure}
+ \begin{enumerate}
+    \item There are 3 loops and 2 meshes (only \circled{1} and \circled{2})
+    \item \ac{kvl} at mesh \circled{1}:
+    \begin{gather*}
+      v_s - v_3 - v_2 = 0 \\
+      v_2 = v_s - v_3 = \SI{5}{\volt} - \SI{3}{\volt} = \SI{2}{\volt}
+    \end{gather*}
+    \ac{kvl} at mesh \circled{2}:
+    \begin{gather*}
+      v_2 + v_4 - v_1 = 0 \\
+      v_1 = v_2 + v_4  = \SI{2}{\volt} - \SI{10}{\volt} = \SI{12}{\volt}
+    \end{gather*}
+  \end{enumerate}
+\end{solution}
+
+% T1.2
+\newpage
+\begin{question}
+  \textbf{Kirchhoff's Laws}
+  \begin{wrapfigure}{r}{6.5cm}
+    \centering
+    \begin{circuitikz} \draw
+      (0,0) node[ground]{} to[V=$v_s$]  (0,2)
+            to[R=$R_s$]                 (0,4)
+            to[R=$R_1$]                 (2,4)
+            to[short,*-]                (2,3)
+            to[R=$R_2$]                 (2,1) -- (2,0) node[ground]{}
+      (2,4) -| (4,3)  to[R=$R_3$]       (4,1) -- (4,0) node[ground]{};
+    \end{circuitikz}
+    \caption{}
+    \label{fig:T1-2}
+  \end{wrapfigure}
+  \begin{enumerate}
+    \item Identify all the nodes in the circuit of \fref{fig:T1-2}. What can you say about the ground?
+    \item Using \ac{kcl}, determine the current through $R_3$ knowing that:
+    \begin{itemize}
+      \item $v_s = \SI{12}{\volt}$
+      \item $R_s = \SI{1}{\kilo\ohm}$
+      \item $R_1 = \SI{2}{\kilo\ohm}$
+      \item $R_2 = \SI{4}{\kilo\ohm}$
+      \item $R_3 = \SI{6}{\kilo\ohm}$
+    \end{itemize}
+  \end{enumerate}
+\end{question}
+\begin{solution}
+  \begin{figure}[!h]
+    \centering
+    \begin{circuitikz} \draw
+      (0,0) node[ground]{} to[V=$v_s$]  (0,2)
+            to[R=$R_s$]                 (0,4)
+            to[R=$R_1$]                 (2,4)
+            to[short,*-]                (2,3)
+            to[R=$R_2$]                 (2,1) -- (2,0) node[ground]{}
+      (2,4) -| (4,3)  to[R=$R_3$]       (4,1) -- (4,0) node[ground]{};
+    \end{circuitikz}
+  \end{figure}
 \end{solution}
 
 \end{document}
