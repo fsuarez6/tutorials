@@ -1,12 +1,18 @@
+% Margins
+\setulmarginsandblock{2.5cm}{2.5cm}{*}
+\setlrmarginsandblock{2cm}{2cm}{*}
+\checkandfixthelayout
 % Language
 \usepackage[english]{babel}
 % Graphics
 \usepackage[pdftex]{graphicx}
 \graphicspath{{./figures/}}
 \DeclareGraphicsExtensions{.pdf,.jpg,.jpeg,.png}
+\usepackage{todonotes}
 % Math
 \usepackage[cmex10]{amsmath}
 \interdisplaylinepenalty=2500{}
+\usepackage{steinmetz}
 % Floats
 \usepackage{booktabs,multirow}
 \usepackage[caption=true,font=footnotesize]{subfig}
@@ -47,7 +53,7 @@
   \clearpage\m@mindentafterchapter\@afterheading}
 \makeatother
 % Reviewing
-\usepackage{color}
-\usepackage{showframe}
-\renewcommand{\ShowFrameColor}{\color{yellow}}
-\renewcommand{\ShowFrameLinethickness}{0.1pt}
+%~ \usepackage{color}
+%~ \usepackage{showframe}
+%~ \renewcommand{\ShowFrameColor}{\color{yellow}}
+%~ \renewcommand{\ShowFrameLinethickness}{0.1pt}

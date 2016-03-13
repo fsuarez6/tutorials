@@ -1,7 +1,7 @@
 \documentclass[10pt,a4paper]{memoir}
 \input{setup.tex}
 
-\title{MA2009: Introduction to Electrical Circuit and Electronic Device}
+\title{MA2009: Introduction to Electrical Circuit and Electronic Devices}
 \author{Francisco Su\'{a}rez-Ruiz}
 
 \begin{document}
@@ -66,7 +66,6 @@
 % T1.2
 \newpage
 \begin{question}
-  \textbf{Kirchhoff's Laws}
   \begin{wrapfigure}{r}{6.5cm}
     \centering
     \begin{circuitikz} \draw
@@ -80,6 +79,7 @@
     \caption{}
     \label{fig:T1-2}
   \end{wrapfigure}
+  \textbf{Kirchhoff's Laws}
   \begin{enumerate}
     \item Identify all the nodes in the circuit of \fref{fig:T1-2}. What can you say about the ground?
     \item Using \ac{kcl}, determine the current through $R_3$ knowing that:
@@ -104,6 +104,220 @@
       (2,4) -| (4,3)  to[R=$R_3$]       (4,1) -- (4,0) node[ground]{};
     \end{circuitikz}
   \end{figure}
+\end{solution}
+
+\chapter{Solving Networks and Power}
+\chapter{Node-Voltage, Mesh-Current and Superposition}
+\chapter{Thevenin and Norton}
+\chapter{Power Transfer and Energy Storage}
+
+% Tutorial T6
+\chapter{Frequency Response}
+% T6.1
+\newpage
+\begin{question}
+  \textbf{RMS and Average Voltages}
+  \begin{figure}[!h]
+    \centering
+    \missingfigure[figwidth=6cm]{}
+    \caption{}
+  \end{figure}
+\end{question}
+
+% T6.2
+\newpage
+\begin{question}
+  \textbf{Complex Numbers}
+  \begin{figure}[!h]
+    \centering
+    \missingfigure[figwidth=6cm]{}
+    \caption{}
+  \end{figure}
+\end{question}
+
+% T6.3
+\newpage
+\begin{question}
+  \textbf{Phasors}
+  \begin{figure}[!h]
+    \centering
+    \missingfigure[figwidth=6cm]{}
+    \caption{}
+  \end{figure}
+\end{question}
+
+% T6.4
+\newpage
+\begin{question}
+  \begin{wrapfigure}{r}{7.5cm}
+    \centering
+    \begin{circuitikz}[scale=1.25] \draw
+      (0,0) to[sV,v=$v_s(t)$, i=$i_s(t)$] (0,2)
+            to[R=$R_1$]                (2,2)
+            to[R=$R_2$]               (2,0)
+            to[short,*-]                  (0,0)
+      (2,2) to[short,*-]                  (4,2)
+            to[C=$C_3$]       (4,0) -- (2,0);
+    \end{circuitikz}
+    \caption{$v_s(t)=10\cos{\left(100t\right)}$}
+    \label{fig:T6-4}
+  \end{wrapfigure}
+  \textbf{AC Analysis}
+  
+  Apply AC analysis to determine $i_s(t)$ in the circuit shown in \fref{fig:T6-4} given that: $R_1 = \SI{50}{\ohm}$, $R_2 = \SI{200}{\ohm}$ and $C_3 = \SI{100}{\micro\farad}$. \textbf{Hint. Follow these steps:}
+  \begin{enumerate}
+    \item Identify the sinusoidal source and note the excitation frequency.
+    \item Convert the source to phasor form.
+    \item Represent each circuit element by its impedance.
+    \item Solve the resulting phasor circuit, using appropriate network analysis tools.
+    \item Convert the (phasor-form) answer to its time-domain equivalent.
+  \end{enumerate}
+\end{question}
+\begin{solution}
+  \begin{enumerate}
+    \item From the sinusoidal source, $v_s(t)=10\cos{\left(100t\right)}$, the excitation frequency is $\omega=100$ $\frac{\mbox{rad}}{\mbox{s}}$.
+    \item $V_s(j\omega)=10\phase{0}$ \si{\volt}.
+    \item The resistors impedance has only real component in the frequency-domain. For the capacitor we need to consider the excitation frequency, therefore:
+    \begin{gather*}
+      Z_1 = 50 \si{\ohm}\\
+      Z_2 = 200 \si{\ohm}\\
+      Z_3 = \dfrac{1}{j\omega C_3} = \dfrac{1}{j 100\times100\times10^{-6}} = \dfrac{1}{j0.01} = -j100\si{\ohm}
+    \end{gather*}
+    \item We can calculate the current $I_s$ by simply calculating the equivalent resistance of the circuit and applying Ohm's law:
+    \begin{figure}[!h]
+      \centering
+      \subfloat[Initial circuit]{
+        \begin{circuitikz}[scale=1.15] \draw
+          (0,0) to[sV,v=$v_s(t)$, i=$i_s(t)$] (0,2)
+                to[generic, l=$Z_1$]          (2,2)
+                to[generic, l=$Z_2$]          (2,0)
+                to[short,*-]                  (0,0)
+          (2,2) to[short,*-]                  (4,2)
+                to[generic, l=$Z_3$]          (4,0) -- (2,0);
+        \end{circuitikz} }\qquad
+      \subfloat[Equivalent circuit]{
+        \begin{circuitikz}[scale=1.15] \draw
+          (0,0) to[sV,v=$v_s(t)$, i=$i_s(t)$] (0,2) -- (2,2)
+                to[generic, l=$Z_{eq}$]       (2,0) -- (0,0);
+        \end{circuitikz} }
+  \end{figure}
+  \begin{align*}
+    I_s &= \dfrac{V_s}{Z_{eq}} \\
+    Z_{eq} &= Z_1 + \left( Z_2  \parallel Z_3 \right) \\
+    Z_2\parallel Z_3 &= \dfrac{Z_2 Z_3}{Z_2+Z_3} = \dfrac{200(-j100)}{200 - j100} = \dfrac{-j200}{2 - j} = \dfrac{-j200}{2 - j}\times\dfrac{2 + j}{2 + j} = \dfrac{200-j400}{5} = \left( 40 - j80 \right)\si{\ohm} \\
+    Z_{eq} &= 50 + \left( 40 - j80 \right) = \left( 90 - j80 \right)\si{\ohm} \\
+    I_s(j\omega) &= \dfrac{10}{90 - j80} = \dfrac{1}{9 - j8}\times\dfrac{9 + j8}{9 + j8} = \dfrac{9 + j8}{145} = \left( 0.062069 + j0.055172 \right)\si{\ampere} \\
+    &= \sqrt{0.062069^2 + 0.055172^2}\phase{\tan^{-1}\left(\frac{0.055172}{0.062069}\right)} = 0.083045\phase{0.72664}\si{\ampere}
+  \end{align*}
+  \item Converting to the time-domain:
+  \begin{equation*}
+    i_s(t) = 0.083045\cos{\left(100t + 0.72664\right)} \si{\ampere} 
+  \end{equation*}
+  \end{enumerate}
+\end{solution}
+
+% Tutorial T7
+\chapter{Review}
+We shall use this slot to:
+\begin{itemize}
+  \item Conclude any previous tutorial questions left uncovered
+  \item Familiarize with an \textbf{online circuit simulator}: https://www.circuitlab.com/
+  
+  NOTE: Exist a NTU-wide license, you must sign-up with your official NTU email account.
+  \item Familiarize with an \textbf{online calculator}: https://octave.im/
+\end{itemize}
+
+% Tutorial T8
+\chapter{Passive Filters}
+
+% T8.1
+\begin{question}
+  \begin{wrapfigure}{r}{8cm}
+    \centering
+    \begin{circuitikz}[scale=2]
+      \def\xPortLeft{0}
+      \def\yTerminalBottom{0}
+      \def\yL{1.5}
+      \def\xL{1}
+      \def\xR{1.75}
+      \def\xC{2.25}
+      \def\xPortRight{3}
+      % left loop
+      \draw                               (\xPortLeft,\yL)
+              to[R=$R_1$, o-]             (\xL, \yL)
+              to[C=$C$]                   (\xR, \yL)
+              to[short]                   (\xC,\yL)
+              to[R=$R_2$,*-*]             (\xC,\yTerminalBottom)
+              to[short]                   (\xPortLeft,\yTerminalBottom)
+              to[open,v^>=$V_i$,o-o]      (\xPortLeft,\yL);
+      % right branch
+      \draw                               (\xC,\yL)
+              to[short]                   (\xPortRight,\yL)
+              to[open,v^=$V_{out}$,o-o]   (\xPortRight,\yTerminalBottom)
+              to[short]                   (\xC,\yTerminalBottom);
+    \end{circuitikz}
+    \caption{}
+    \label{fig:T8-1}
+  \end{wrapfigure}
+  \textbf{Cut-off Frequency}
+  
+  In the circuit shown in \fref{fig:T8-1}, find the expression of the frequency response $H$ and plot the corresponding Bode plot for $R_1=\SI{1}{\ohm}$, $R_2=\SI{2}{\ohm}$ and $C=\SI{1}{\micro\farad}$.
+  \begin{enumerate}
+    \item Is it a high-pass or low-pass filter?
+    \item What is the gain in the pass-band?
+    \item Find the $-3\si{dB}$
+  \end{enumerate}
+\end{question}
+\begin{solution}
+  Solution goes here
+\end{solution}
+
+% T8.2
+\newpage
+\begin{question}
+  \textbf{RLC Filters}
+  
+  For each of the filters shown in \fref{fig:T8-2} find, without writing the complete frequency response, a simple expression for the frequency response when the frequency is very low ($\omega\to 0$) and when it is very high ($\omega\to\infty$). Are they filter low-pass or high-pass?
+  \begin{figure}[!h]
+    \centering
+    \subfloat[]{
+        \begin{circuitikz}[scale=1] \draw
+          (0,0) to[short,o-o]     (5,0)
+          (0,2) to[R=$R_1$, o-]   (2,2)
+                to[R=$R_2$]       (4,2)
+                to[short,-o]      (5,2)
+          (4,2) to[L=$L$, *-*]    (4,0);
+        \end{circuitikz} } \qquad\qquad
+    \subfloat[]{
+        \begin{circuitikz}[scale=1] \draw
+          (0,0) to[short,o-o]     (5,0)
+          (0,2) to[R=$R_1$, o-]   (2,2)
+                to[C=$C$]         (4,2)
+                to[short,-o]      (5,2)
+          (4,2) to[R=$R_2$, *-*]  (4,0);
+        \end{circuitikz} } \\
+    \subfloat[]{
+        \begin{circuitikz}[scale=1] \draw
+          (0,0) to[short,o-o]     (5,0)
+          (0,2) to[R=$R_1$, o-]   (2,2)
+                to[short,-o]      (5,2)
+          (2,2) to[C=$C$,*-*]     (2,0)
+          (4,2) to[R=$R_2$,*-*]   (4,0);
+        \end{circuitikz} } \qquad\qquad
+    \subfloat[]{
+        \begin{circuitikz}[scale=1] \draw
+          (0,0) to[short,o-o]     (5,0)
+          (0,2) to[R=$R_1$, o-]   (2,2)
+                to[L=$L$]         (4,2)
+                to[short,-o]      (5,2)
+          (4,2) to[R=$R_2$, *-*]  (4,0);
+        \end{circuitikz} }
+    \caption{}
+    \label{fig:T8-2}
+  \end{figure}
+\end{question}
+\begin{solution}
+  Solution goes here
 \end{solution}
 
 \end{document}
