@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american,siunitx]{circuitikz}
+\ctikzset{voltage/distance from node=0.8}
+
+\begin{document}
+  \begin{circuitikz} \draw
+    (0,0) node[ground]{} to[V=$v_s$]  (0,2)
+          to[R=$R_s$]                 (0,4)
+          to[R=$R_1$]                 (2,4)
+          to[short,*-]                (2,3)
+          to[R=$R_2$]                 (2,1) -- (2,0) node[ground]{}
+    (2,4) -| (4,3)  to[R=$R_3$]       (4,1) -- (4,0) node[ground]{};
+  \end{circuitikz}
+\end{document}

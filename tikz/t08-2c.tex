@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american,siunitx]{circuitikz}
+\ctikzset{voltage/distance from node=0.8}
+
+\begin{document}
+  \begin{circuitikz}[scale=1] \draw
+    (0,0) to[short,o-o]     (5,0)
+    (0,2) to[R=$R_1$, o-]   (2,2)
+          to[short,-o]      (5,2)
+    (2,2) to[C=$C$,*-*]     (2,0)
+    (4,2) to[R=$R_2$,*-*]   (4,0);
+  \end{circuitikz}
+\end{document}

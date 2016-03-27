@@ -1,0 +1,7 @@
+import os
+
+# Load environment variables
+env = Environment(ENV = os.environ)
+# Build tikz files
+pdfs = env.PDF(Glob('*.tex'))
+env.NoClean(pdfs)

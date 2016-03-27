@@ -1,0 +1,20 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american,siunitx]{circuitikz}
+\ctikzset{voltage/distance from node=0.8}
+
+\begin{document}
+
+\begin{circuitikz}[scale=1] \draw
+  (2,0) to[R=1.2<\kilo\ohm>] (2,2)
+        to[Tnpn,n=npn]       (2,4)
+        to[R=3.3<\kilo\ohm>] (2,6)
+  (0,0) to[R=15<\kilo\ohm>]  (0,2)
+        to[short,-*]         (0,3) -- (npn.B) -| (0,4)
+        to[R=62<\kilo\ohm>]  (0,6)
+  (0,0) to[short,-*]         (2,0) -- (4,0)
+        to[V=18<\volt>]      (4,6)
+        to[short,-*]         (2,6) -- (0,6);
+\end{circuitikz}
+
+\end{document}

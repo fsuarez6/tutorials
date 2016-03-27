@@ -1,5 +1,6 @@
 # Latex
 main.pdf
+figures/*.pdf
 doc
 *.aux
 *.log

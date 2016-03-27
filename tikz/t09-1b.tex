@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american,siunitx]{circuitikz}
+\ctikzset{voltage/distance from node=0.8}
+
+\begin{document}
+  \begin{circuitikz}[scale=1] \draw
+    (0,0)   node[npn] (npn)     {}
+    (npn.C) to [open, v^=$\SI{0.7}{\volt}$] (npn.E)
+    (npn.C) to [open, v=$\SI{0.2}{\volt}$]  (npn.B);
+  \end{circuitikz}
+\end{document}

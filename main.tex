@@ -14,39 +14,19 @@
   \textbf{Kirchhoff's Laws}
   \begin{figure}[!h]
     \centering
-    \begin{circuitikz}[scale=1.25] \draw
-      (0,0) to[V,v=5<\volt>]            (0,2)
-            to[R,v^=3<\volt>]           (2,2)
-            to[R,v=$v_2$]               (2,0) 
-            node[ground]{} to[short,*-] (0,0)
-      (2,0) to[short,*-]                (4,0)
-            to[I=3<\ampere>,v>=$v_1$]   (4,2)
-            to[R=$R$,v=10<\volt>,-*]    (2,2);
-    \end{circuitikz}
+    \includegraphics[scale=1]{t01-1a}
     \caption{}
-    \label{fig:T1-1}
+    \label{fig:t01-1a}
   \end{figure}
   \begin{enumerate}
-    \item Identify loop and meshes in the circuit of \fref{fig:T1-1}.
+    \item Identify loop and meshes in the circuit of \fref{fig:t01-1a}.
     \item Apply \ac{kvl} to find voltages $v_1$ and $v_2$.
   \end{enumerate}
 \end{question}
 \begin{solution}
   \begin{figure}[!h]
     \centering
-    \begin{circuitikz}[scale=1.25] \draw
-      (0,0) to[V,v=$v_s$]               (0,2)
-            to[R,v^=$v_3$]              (2,2)
-            to[R,v=$v_2$]               (2,0) 
-            node[ground]{} to[short,*-] (0,0)
-      (2,0) to[short,*-]                (4,0)
-            to[I,v>=$v_1$]              (4,2)
-            to[R,v=$v_4$,-*]    (2,2);
-      \draw[thin,<-,>=triangle 45,blue] (1,1) node{\circled{1}}  ++(-60:0.5) arc (-60:170:0.5);
-      \draw[thin, <-,>=triangle 45,blue] (3,1) node{\circled{2}}  ++(-60:0.5) arc (-60:170:0.5);
-      \draw[thin, <-,>=triangle 45,red] (2,1) [partial ellipse=-30:180:3 and 1.75];
-      \node[red] at (2,2.5) {\circled{3}};
-    \end{circuitikz}
+    \includegraphics[scale=1]{t01-1b}
   \end{figure}
  \begin{enumerate}
     \item There are 3 loops and 2 meshes (only \circled{1} and \circled{2})
@@ -68,20 +48,13 @@
 \begin{question}
   \begin{wrapfigure}{r}{6.5cm}
     \centering
-    \begin{circuitikz} \draw
-      (0,0) node[ground]{} to[V=$v_s$]  (0,2)
-            to[R=$R_s$]                 (0,4)
-            to[R=$R_1$]                 (2,4)
-            to[short,*-]                (2,3)
-            to[R=$R_2$]                 (2,1) -- (2,0) node[ground]{}
-      (2,4) -| (4,3)  to[R=$R_3$]       (4,1) -- (4,0) node[ground]{};
-    \end{circuitikz}
+    \includegraphics[scale=1]{t01-2a}
     \caption{}
-    \label{fig:T1-2}
+    \label{fig:t01-2a}
   \end{wrapfigure}
   \textbf{Kirchhoff's Laws}
   \begin{enumerate}
-    \item Identify all the nodes in the circuit of \fref{fig:T1-2}. What can you say about the ground?
+    \item Identify all the nodes in the circuit of \fref{fig:T1-2a}. What can you say about the ground?
     \item Using \ac{kcl}, determine the current through $R_3$ knowing that:
     \begin{itemize}
       \item $v_s = \SI{12}{\volt}$
@@ -95,14 +68,7 @@
 \begin{solution}
   \begin{figure}[!h]
     \centering
-    \begin{circuitikz} \draw
-      (0,0) node[ground]{} to[V=$v_s$]  (0,2)
-            to[R=$R_s$]                 (0,4)
-            to[R=$R_1$]                 (2,4)
-            to[short,*-]                (2,3)
-            to[R=$R_2$]                 (2,1) -- (2,0) node[ground]{}
-      (2,4) -| (4,3)  to[R=$R_3$]       (4,1) -- (4,0) node[ground]{};
-    \end{circuitikz}
+    \missingfigure[figwidth=6cm]{}
   \end{figure}
 \end{solution}
 
@@ -151,20 +117,13 @@
 \begin{question}
   \begin{wrapfigure}{r}{7.5cm}
     \centering
-    \begin{circuitikz}[scale=1.25] \draw
-      (0,0) to[sV,v=$v_s(t)$, i=$i_s(t)$] (0,2)
-            to[R=$R_1$]                (2,2)
-            to[R=$R_2$]               (2,0)
-            to[short,*-]                  (0,0)
-      (2,2) to[short,*-]                  (4,2)
-            to[C=$C_3$]       (4,0) -- (2,0);
-    \end{circuitikz}
+    \includegraphics[scale=1]{t06-4}
     \caption{$v_s(t)=10\cos{\left(100t\right)}$}
-    \label{fig:T6-4}
+    \label{fig:t06-4}
   \end{wrapfigure}
   \textbf{AC Analysis}
   
-  Apply AC analysis to determine $i_s(t)$ in the circuit shown in \fref{fig:T6-4} given that: $R_1 = \SI{50}{\ohm}$, $R_2 = \SI{200}{\ohm}$ and $C_3 = \SI{100}{\micro\farad}$. \textbf{Hint. Follow these steps:}
+  Apply AC analysis to determine $i_s(t)$ in the circuit shown in \fref{fig:t06-4} given that: $R_1 = \SI{50}{\ohm}$, $R_2 = \SI{200}{\ohm}$ and $C_3 = \SI{100}{\micro\farad}$. \textbf{Hint. Follow these steps:}
   \begin{enumerate}
     \item Identify the sinusoidal source and note the excitation frequency.
     \item Convert the source to phasor form.
@@ -186,20 +145,8 @@
     \item We can calculate the current $I_s$ by simply calculating the equivalent resistance of the circuit and applying Ohm's law:
     \begin{figure}[!h]
       \centering
-      \subfloat[Initial circuit]{
-        \begin{circuitikz}[scale=1.15] \draw
-          (0,0) to[sV,v=$v_s(t)$, i=$i_s(t)$] (0,2)
-                to[generic, l=$Z_1$]          (2,2)
-                to[generic, l=$Z_2$]          (2,0)
-                to[short,*-]                  (0,0)
-          (2,2) to[short,*-]                  (4,2)
-                to[generic, l=$Z_3$]          (4,0) -- (2,0);
-        \end{circuitikz} }\qquad
-      \subfloat[Equivalent circuit]{
-        \begin{circuitikz}[scale=1.15] \draw
-          (0,0) to[sV,v=$v_s(t)$, i=$i_s(t)$] (0,2) -- (2,2)
-                to[generic, l=$Z_{eq}$]       (2,0) -- (0,0);
-        \end{circuitikz} }
+      \subfloat[Initial circuit]{\includegraphics[scale=1]{t06-4a}}\qquad
+      \subfloat[Equivalent circuit]{\includegraphics[scale=1]{t06-4b}}
   \end{figure}
   \begin{align*}
     I_s &= \dfrac{V_s}{Z_{eq}} \\
@@ -234,34 +181,13 @@ We shall use this slot to:
 \begin{question}
   \begin{wrapfigure}{r}{8cm}
     \centering
-    \begin{circuitikz}[scale=2]
-      \def\xPortLeft{0}
-      \def\yTerminalBottom{0}
-      \def\yL{1.5}
-      \def\xL{1}
-      \def\xR{1.75}
-      \def\xC{2.25}
-      \def\xPortRight{3}
-      % left loop
-      \draw                               (\xPortLeft,\yL)
-              to[R=$R_1$, o-]             (\xL, \yL)
-              to[C=$C$]                   (\xR, \yL)
-              to[short]                   (\xC,\yL)
-              to[R=$R_2$,*-*]             (\xC,\yTerminalBottom)
-              to[short]                   (\xPortLeft,\yTerminalBottom)
-              to[open,v^>=$V_i$,o-o]      (\xPortLeft,\yL);
-      % right branch
-      \draw                               (\xC,\yL)
-              to[short]                   (\xPortRight,\yL)
-              to[open,v^=$V_{out}$,o-o]   (\xPortRight,\yTerminalBottom)
-              to[short]                   (\xC,\yTerminalBottom);
-    \end{circuitikz}
+    \includegraphics[scale=1]{t08-1a}
     \caption{}
-    \label{fig:T8-1}
+    \label{fig:t08-1a}
   \end{wrapfigure}
   \textbf{Cut-off Frequency}
   
-  In the circuit shown in \fref{fig:T8-1}, find the expression of the frequency response $H$ and plot the corresponding Bode plot for $R_1=\SI{1}{\ohm}$, $R_2=\SI{2}{\ohm}$ and $C=\SI{1}{\micro\farad}$.
+  In the circuit shown in \fref{fig:t08-1a}, find the expression of the frequency response $H$ and plot the corresponding Bode plot for $R_1=\SI{1}{\ohm}$, $R_2=\SI{2}{\ohm}$ and $C=\SI{1}{\micro\farad}$.
   \begin{enumerate}
     \item Is it a high-pass or low-pass filter?
     \item What is the gain in the pass-band?
@@ -277,44 +203,66 @@ We shall use this slot to:
 \begin{question}
   \textbf{RLC Filters}
   
-  For each of the filters shown in \fref{fig:T8-2} find, without writing the complete frequency response, a simple expression for the frequency response when the frequency is very low ($\omega\to 0$) and when it is very high ($\omega\to\infty$). Are they filter low-pass or high-pass?
+  For each of the filters shown in \fref{fig:t08-2} find, without writing the complete frequency response, a simple expression for the frequency response when the frequency is very low ($\omega\to 0$) and when it is very high ($\omega\to\infty$). Are they filter low-pass or high-pass?
   \begin{figure}[!h]
     \centering
-    \subfloat[]{
-        \begin{circuitikz}[scale=1] \draw
-          (0,0) to[short,o-o]     (5,0)
-          (0,2) to[R=$R_1$, o-]   (2,2)
-                to[R=$R_2$]       (4,2)
-                to[short,-o]      (5,2)
-          (4,2) to[L=$L$, *-*]    (4,0);
-        \end{circuitikz} } \qquad\qquad
-    \subfloat[]{
-        \begin{circuitikz}[scale=1] \draw
-          (0,0) to[short,o-o]     (5,0)
-          (0,2) to[R=$R_1$, o-]   (2,2)
-                to[C=$C$]         (4,2)
-                to[short,-o]      (5,2)
-          (4,2) to[R=$R_2$, *-*]  (4,0);
-        \end{circuitikz} } \\
-    \subfloat[]{
-        \begin{circuitikz}[scale=1] \draw
-          (0,0) to[short,o-o]     (5,0)
-          (0,2) to[R=$R_1$, o-]   (2,2)
-                to[short,-o]      (5,2)
-          (2,2) to[C=$C$,*-*]     (2,0)
-          (4,2) to[R=$R_2$,*-*]   (4,0);
-        \end{circuitikz} } \qquad\qquad
-    \subfloat[]{
-        \begin{circuitikz}[scale=1] \draw
-          (0,0) to[short,o-o]     (5,0)
-          (0,2) to[R=$R_1$, o-]   (2,2)
-                to[L=$L$]         (4,2)
-                to[short,-o]      (5,2)
-          (4,2) to[R=$R_2$, *-*]  (4,0);
-        \end{circuitikz} }
+    \subfloat[]{\includegraphics[scale=1]{t08-2a}} \qquad\qquad
+    \subfloat[]{\includegraphics[scale=1]{t08-2b}} \\
+    \subfloat[]{\includegraphics[scale=1]{t08-2c}} \qquad\qquad
+    \subfloat[]{\includegraphics[scale=1]{t08-2d}}
     \caption{}
-    \label{fig:T8-2}
+    \label{fig:t08-2}
   \end{figure}
+\end{question}
+\begin{solution}
+  Solution goes here
+\end{solution}
+
+% Tutorial T8
+\chapter{Transistors and Amplification}
+
+% T9.1
+\begin{question}
+  For each transistor shown in \fref{fig:t09-1}, determine the operating region. Assume $V_{\gamma}=\SI{0.6}{\volt}$.
+  \begin{figure}[!h]
+    \centering
+    \subfloat[]{\includegraphics[scale=1]{t09-1a}} \qquad\qquad
+    \subfloat[]{\includegraphics[scale=1]{t09-1b}} \qquad\qquad
+    \subfloat[]{\includegraphics[scale=1]{t09-1c}}
+    \caption{}
+    \label{fig:t09-1}
+  \end{figure}
+\end{question}
+\begin{solution}
+  Solution goes here
+\end{solution}
+
+% T9.2
+\newpage
+\begin{question}
+  The transistor 2N3904, which has given I-V curve shown in \fref{fig:t09-2a}, is now connected in the circuit shown in \fref{fig:t09-2b}. Derive the load line equation and graphically determine the Q-point of the transistor.
+  \begin{figure}[!h]
+    \centering
+    \subfloat[]{\missingfigure[figwidth=6cm]{}} \qquad\qquad
+    \subfloat[]{\includegraphics[height=50mm]{t09-2b}}
+    \caption{}
+    \label{fig:t09-2}
+  \end{figure}
+\end{question}
+\begin{solution}
+  Solution goes here
+\end{solution}
+
+% T9.3
+\newpage
+\begin{question}
+  \begin{wrapfigure}{r}{6.5cm}
+    \centering
+    \includegraphics[scale=0.8]{t09-3}
+    \caption{}
+    \label{fig:t09-3}
+  \end{wrapfigure}
+  Given the circuit of \fref{fig:t09-3}, determine the operation point of the transistor. Assume a \SI{0.6}{\volt} offset voltage and $\beta = 150$. In what region is the transistor?
 \end{question}
 \begin{solution}
   Solution goes here

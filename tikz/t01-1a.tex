@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american,siunitx]{circuitikz}
+\ctikzset{voltage/distance from node=0.8}
+
+\begin{document}
+\begin{circuitikz}[scale=1.25] \draw
+  (0,0) to[V,v=5<\volt>]            (0,2)
+        to[R,v^=3<\volt>]           (2,2)
+        to[R,v=$v_2$]               (2,0) 
+        node[ground]{} to[short,*-] (0,0)
+  (2,0) to[short,*-]                (4,0)
+        to[I=3<\ampere>,v>=$v_1$]   (4,2)
+        to[R=$R$,v=10<\volt>,-*]    (2,2);
+\end{circuitikz}
+\end{document}
