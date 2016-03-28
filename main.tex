@@ -234,7 +234,50 @@ We shall use this slot to:
   \end{figure}
 \end{question}
 \begin{solution}
-  Solution goes here
+  \begin{table}[!h]
+  \centering
+  \begin{tabular}{l | l l}
+    \toprule
+     & $V_{CE} \leq V_{\gamma}$ & $V_{CE} > V_{\gamma}$ \\
+    \midrule
+    $V_{BE} < V_{\gamma}$     & Cut-off     & Cut-off \\
+    $V_{BE} \geq V_{\gamma}$  & Saturation  & Active \\
+    \bottomrule
+  \end{tabular}
+  \caption{Operation regions of a BJT}
+  \end{table}
+  \begin{enumerate}[(a)]
+    \item This is a \textbf{npn} transistor.
+      \begin{equation*}
+        \left.
+        \begin{aligned}
+          V_{BE} = \SI{0.7}{\volt} \, &> V_{\gamma} \\
+          V_{CE} = \SI{0.3}{\volt} \, &< V_{\gamma}
+        \end{aligned} \right\rbrace \implies \mbox{BJT is in the \textbf{saturation} region.}
+      \end{equation*}
+    \item This is a \textbf{npn} transistor.
+      \begin{gather*}
+        V_{CE} = \SI{0.2}{\volt} \\
+        V_{CB} = \SI{0.7}{\volt} \\
+        V_{CE} = V_{CB} + V_{BE} \implies V_{BE} = V_{CE} - V_{CB} = 0.2 - 0.7 =  -\SI{0.5}{\volt} \\
+        \left.
+        \begin{aligned}
+          V_{BE} = -\SI{0.5}{\volt} \, &< V_{\gamma} \\
+          V_{CE} =  \SI{0.2}{\volt} \, &< V_{\gamma}
+        \end{aligned} \right\rbrace \implies \mbox{BJT is in the \textbf{cut-off} region.}
+      \end{gather*}
+    \item This is a \textbf{npn} transistor.
+    \begin{gather*}
+        V_{CB} = \SI{5.4}{\volt} \\
+        V_{BE} = \SI{0.7}{\volt} \\
+        V_{CE} = V_{CB} + V_{BE} = 5.4 - 0.7 =  \SI{6.1}{\volt} \\
+        \left.
+        \begin{aligned}
+          V_{BE} = \SI{0.7}{\volt} \, &> V_{\gamma} \\
+          V_{CE} = \SI{6.1}{\volt} \, &> V_{\gamma}
+        \end{aligned} \right\rbrace \implies \mbox{BJT is in the \textbf{active} region.}
+      \end{gather*}
+  \end{enumerate}
 \end{solution}
 
 % T9.2
@@ -243,14 +286,47 @@ We shall use this slot to:
   The transistor 2N3904, which has given I-V curve shown in \fref{fig:t09-2a}, is now connected in the circuit shown in \fref{fig:t09-2b}. Derive the load line equation and graphically determine the Q-point of the transistor.
   \begin{figure}[!h]
     \centering
-    \subfloat[]{\missingfigure[figwidth=6cm]{}} \qquad\qquad
-    \subfloat[]{\includegraphics[height=50mm]{t09-2b}}
+    \subfloat[]{\includegraphics[height=50mm]{bjt-i-v-curve}\label{fig:t09-2a}} \qquad\qquad
+    \subfloat[]{\includegraphics[height=50mm]{t09-2b}\label{fig:t09-2b}}
     \caption{}
-    \label{fig:t09-2}
   \end{figure}
 \end{question}
 \begin{solution}
-  Solution goes here
+  \setlength\figwidth{80mm}
+  \begin{wrapfigure}{r}{8cm}
+    \centering
+    \begin{tikzpicture}
+      \node[draw=none,fill=none,anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=\figwidth]{bjt-i-v-curve}};
+      \node[circle,fill=red,inner sep=0pt,minimum size=0.025\figwidth] (P1) at (0.157\figwidth,0.725\figwidth) {};
+      \node[circle,fill=red,inner sep=0pt,minimum size=0.025\figwidth] (P2) at (0.825\figwidth,0.075\figwidth) {};
+      \draw[red,very thick] (P1) edge (P2);
+      \node[circle,fill=blue,inner sep=0pt,minimum size=0.025\figwidth] (I) at (0.6\figwidth,0.295\figwidth) {};
+      \node[inner sep=0pt] (X) at (0.6\figwidth,0.075\figwidth) {};
+      \node[inner sep=0pt] (Y) at (0.157\figwidth,0.295\figwidth) {};
+      \draw[blue,thick,dashed] (X) edge (I);
+      \draw[blue,thick,dashed] (Y) edge (I);
+    \end{tikzpicture}
+  \end{wrapfigure}
+  Let's assume that the transistor in the \textbf{active} region.
+  \newline
+  Applying KVL at mesh \circled{1}:
+  \begin{gather*}
+    -V_{cc} + I_{C}R_{c} + V_{CE} = 0 \\
+    I_{C} = \dfrac{V_{cc} - V_{CE}}{R_{c}} \\
+    I_{C}\left(V_{CE}\right) = \dfrac{20 - V_{CE}}{200}\implies \mbox{Load-line equation} \\
+  \end{gather*}
+  We select 2 points to plot the line on top of the transistor's I-V curve.
+  \begin{gather*}
+    \mbox{If}\quad V_{CE}=0 \\
+    I_{c}(0) = \dfrac{20 - 0}{200} = \SI{100}{\milli\ampere} \implies P_1 = \left( 0, 100\right) \\
+    \mbox{If}\quad I_{C}=0 \\
+    0 = \dfrac{20 - V_{CE}}{200} \implies V_{CE} = \SI{20}{\volt} \implies P_2 = \left( 20, 0\right)
+  \end{gather*}
+  \newline
+  The Q-point of the circuit if defined as:
+  \begin{equation*}
+    I_{BQ} = \SI{200}{\micro\ampere} \qquad;\qquad I_{CQ}\approx \SI{33}{\milli\ampere} \qquad;\qquad V_{CE} \approx \SI{13.5}{\volt}
+  \end{equation*}
 \end{solution}
 
 % T9.3
@@ -262,7 +338,7 @@ We shall use this slot to:
     \caption{}
     \label{fig:t09-3}
   \end{wrapfigure}
-  Given the circuit of \fref{fig:t09-3}, determine the operation point of the transistor. Assume a \SI{0.6}{\volt} offset voltage and $\beta = 150$. In what region is the transistor?
+  Given the circuit of \fref{fig:t09-3}, determine the operation point of the transistor. Assume a $\SI{0.6}{\volt}$ offset voltage and $\beta = 150$. In what region is the transistor?
 \end{question}
 \begin{solution}
   Solution goes here

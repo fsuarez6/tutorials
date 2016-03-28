@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american,siunitx]{circuitikz}
+\ctikzset{voltage/distance from node=0.8}
+
+\begin{document}
+
+\begin{circuitikz}[scale=1] \draw
+  (4,0)  node[ground]{}
+         to[R=$R_E$]          (4,2)
+         to[Tnpn,n=npn]       (4,4) -- (4,6)
+  (2,0)  node[ground]{}
+         to[R=$R_2$]          (2,2) |- (npn.B)
+  (2,3)  to[short,*-]         (2,4)
+         to[R=$R_1$]          (2,6)
+  (6,4)  node[ground]{}
+         to[V=$V_{cc}$]       (6,6)
+         to[short,-*]         (4,6) -- (2,6);
+\end{circuitikz}
+
+\end{document}
