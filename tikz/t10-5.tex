@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american,siunitx]{circuitikz}
+\ctikzset{voltage/distance from node=0.8}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\tikzset{
+    partial ellipse/.style args={#1:#2:#3}{
+        insert path={+ (#1:#3) arc (#1:#2:#3)}
+    }
+}
+
+\makeatletter
+\ctikzset{current arrow color/.initial=black}
+
+\pgfdeclareshape{currarrow}{
+  \anchor{center}{
+    \pgfpointorigin
+  }
+  \behindforegroundpath{
+    \pgfscope
+      \pgf@circ@res@step = \pgfkeysvalueof{/tikz/circuitikz/bipoles/length}
+      \divide \pgf@circ@res@step by 16
+      \pgfpathmoveto{\pgfpoint{-.7\pgf@circ@res@step}{0pt}}
+      \pgfpathlineto{\pgfpoint{-.7\pgf@circ@res@step}{-.8\pgf@circ@res@step}}
+      \pgfpathlineto{\pgfpoint{1\pgf@circ@res@step}{0pt}}
+      \pgfpathlineto{\pgfpoint{-.7\pgf@circ@res@step}{.8\pgf@circ@res@step}}
+      \pgfpathlineto{\pgfpoint{-.7\pgf@circ@res@step}{0pt}}
+      \pgfsetcolor{\pgfkeysvalueof{/tikz/circuitikz/current arrow color}}
+      \pgfusepath{draw,fill}
+    \endpgfscope
+  }
+}
+\makeatother
+
+\begin{document}
+
+\begin{circuitikz}[scale=1]
+\draw
+  (4,2)  to[Tnpn,n=npn]             (4,4)
+         to[R=$R_{C}$]              (4,6);
+\draw[circuitikz/current arrow color=red]
+  (4,0)  node[ground]{}
+         to[R,l_=$R_{E}$,i<_=$I_E$] (4,2)
+  (1,0)  node[ground]{}
+         to[V=$V_{BB}$,i=$I_B$]     (1,3)
+         to[R=$R_{B}$]              (npn.B)
+  (7,4)  node[ground]{}
+         to[V_=$V_{CC}$,i=$I_C$]    (7,6) -- (4,6);
+\draw[blue]
+  (npn.C) to [open, v^=$V_{CE}$]    (npn.E)
+  (npn.B) to [open, v=$V_{BE}$]     (npn.E);
+\draw[thin,<-,>=triangle 45,red]    (2.5,1)   node{\circled{1}}  ++(-60:0.9) arc (-60:170:0.9);
+\draw[thin,->,>=triangle 45,red]    (5.5,4.5) node{\circled{2}}  ++(-60:0.9) arc (-60:150:0.9);
+\end{circuitikz}
+
+\end{document}

@@ -218,19 +218,22 @@ We shall use this slot to:
   Solution goes here
 \end{solution}
 
-% Tutorial T8
+% Tutorial T9
+\chapter{Diodes}
+
+% Tutorial T10
 \chapter{Transistors and Amplification}
 
-% T9.1
+% T10.1
 \begin{question}
-  For each transistor shown in \fref{fig:t09-1}, determine the operating region. Assume $V_{\gamma}=\SI{0.6}{\volt}$.
+  For each transistor shown in \fref{fig:t10-1}, determine the operating region. Assume $V_{\gamma}=\SI{0.6}{\volt}$.
   \begin{figure}[!h]
     \centering
-    \subfloat[]{\includegraphics[scale=1]{t09-1a}} \qquad\qquad
-    \subfloat[]{\includegraphics[scale=1]{t09-1b}} \qquad\qquad
-    \subfloat[]{\includegraphics[scale=1]{t09-1c}}
+    \subfloat[]{\includegraphics[scale=1]{t10-1a}} \qquad\qquad
+    \subfloat[]{\includegraphics[scale=1]{t10-1b}} \qquad\qquad
+    \subfloat[]{\includegraphics[scale=1]{t10-1c}}
     \caption{}
-    \label{fig:t09-1}
+    \label{fig:t10-1}
   \end{figure}
 \end{question}
 \begin{solution}
@@ -280,14 +283,14 @@ We shall use this slot to:
   \end{enumerate}
 \end{solution}
 
-% T9.2
+% T10.2
 \newpage
 \begin{question}
-  The transistor 2N3904, which has given I-V curve shown in \fref{fig:t09-2a}, is now connected in the circuit shown in \fref{fig:t09-2b}. Derive the load line equation and graphically determine the Q-point of the transistor.
+  The transistor 2N3904, which has given I-V curve shown in \fref{fig:t10-2a}, is now connected in the circuit shown in \fref{fig:t10-2b}. Derive the load line equation and graphically determine the Q-point of the transistor.
   \begin{figure}[!h]
     \centering
-    \subfloat[]{\includegraphics[height=50mm]{bjt-i-v-curve}\label{fig:t09-2a}} \qquad\qquad
-    \subfloat[]{\includegraphics[height=50mm]{t09-2b}\label{fig:t09-2b}}
+    \subfloat[]{\includegraphics[height=50mm]{bjt-i-v-curve}\label{fig:t10-2a}} \qquad\qquad
+    \subfloat[]{\includegraphics[height=50mm]{t10-2b}\label{fig:t10-2b}}
     \caption{}
   \end{figure}
 \end{question}
@@ -311,7 +314,7 @@ We shall use this slot to:
   \newline
   Applying KVL at mesh \circled{1}:
   \begin{gather*}
-    -V_{cc} + I_{C}R_{c} + V_{CE} = 0 \\
+    V_{cc} - I_{C}R_{c} - V_{CE} = 0 \\
     I_{C} = \dfrac{V_{cc} - V_{CE}}{R_{c}} \\
     I_{C}\left(V_{CE}\right) = \dfrac{20 - V_{CE}}{200}\implies \mbox{Load-line equation} \\
   \end{gather*}
@@ -329,19 +332,102 @@ We shall use this slot to:
   \end{equation*}
 \end{solution}
 
-% T9.3
+% T10.3
 \newpage
 \begin{question}
   \begin{wrapfigure}{r}{6.5cm}
     \centering
-    \includegraphics[scale=0.8]{t09-3}
+    \includegraphics[scale=0.8]{t10-3}
     \caption{}
-    \label{fig:t09-3}
+    \label{fig:t10-3}
   \end{wrapfigure}
-  Given the circuit of \fref{fig:t09-3}, determine the operation point of the transistor. Assume a $\SI{0.6}{\volt}$ offset voltage and $\beta = 150$. In what region is the transistor?
+  Given the circuit of \fref{fig:t10-3}, determine the operation point of the transistor. Assume a $\SI{0.6}{\volt}$ offset voltage and $\beta = 150$. In what region is the transistor?
 \end{question}
 \begin{solution}
   Solution goes here
+\end{solution}
+
+% T10.4
+\newpage
+\begin{question}
+THe circuit is a common-collector
+\end{question}
+\begin{solution}
+  Solution goes here
+\end{solution}
+
+% T10.5
+\newpage
+\begin{question}
+  \begin{wrapfigure}{r}{7cm}
+    \centering
+    \includegraphics[scale=0.75]{t10-5}
+    \caption{}
+    \label{fig:t10-5}
+  \end{wrapfigure}
+  Given the circuit of \fref{fig:t10-5}, determine the operation point (Q-point) of the transistor. Assume a $\SI{0.7}{\volt}$ offset voltage and $\beta = 100$. In what region is the transistor?
+  \begin{align*}
+    V_{BB} &= \SI{6}{\volt}      & V_{CC}  &= \SI{12}{\volt}     \\
+    R_{B} &= \SI{10}{\kilo\ohm} & R_{C}   &= \SI{10}{\kilo\ohm} \\
+    R_{E} &= \SI{2}{\kilo\ohm}  & 
+  \end{align*}
+  
+\end{question}
+\begin{solution}
+  Let's assume that the transistor is in the \textbf{active} region, therefore,
+  \begin{flalign*}
+    V_{BE} &= V_{\gamma} =  \SI{0.7}{\volt} &\\
+    I_{C}  &= \beta I_{B} &\\
+    I_{E}  &= I_{B} + I_{C} = \left( \beta+1 \right) I_{B} &
+  \end{flalign*}
+  KVL at mesh \circled{1}:
+  \begin{gather*}
+    V_{BB} - I_{B}R_{B} - V_{BE} - I_{E}R_{E} = 0 \\
+    V_{BB} - I_{B}R_{B} - V_{BE} - \left( \beta+1 \right) I_{B}R_{E} = 0 \\
+    I_{B} = \dfrac{V_{BB} - V_{BE}}{R_{B} + \left( \beta+1 \right) R_{E}} = \SI{25}{\micro\ampere}
+  \end{gather*}
+  KVL at mesh \circled{2}:
+  \begin{gather*}
+    V_{CC} - I_{C}R_{C} - V_{CE} - I_{E}R_{E} = 0 \\
+    V_{CC} - \beta I_{B}R_{C} - V_{CE} - \left( \beta+1 \right) I_{B}R_{E} = 0 \\
+    V_{CE} = V_{CC} - I_{B}\left[ \beta R_{C} - \left(\beta+1\right)R_{E}\right] = \SI{-7.95}{\volt}
+  \end{gather*}
+  Given that $V_{CE} = \SI{-7.95}{\volt} < V{\gamma}$, our assumption was \text{wrong}. The transistor is \textbf{not active}.
+  
+  \bigskip
+  \textbf{IMPORTANT:} The following is included just for reference and can be skipped. If you check in the lectures, the Q-point is discussed only for active transistors.
+  
+  \bigskip
+  \bigskip
+  Now, let's assume that the transistor is in the \textbf{saturation} region. Typical saturation values are around $V_{sat} = \SI{0.2}{\volt}$, therefore,
+  \begin{gather*}
+    V_{BE} = V_{\gamma} =  \SI{0.7}{\volt}  \\
+    V_{CE} = V_{sat} = \SI{0.2}{\volt}      \\
+    I_{E}  = I_{B} + I_{C}
+  \end{gather*}
+  Now that we know $V_{CE}$, the circuit can be solved using node voltage method and Ohm's law,
+  \begin{equation*}
+    I_B = \dfrac{V_{BB} - V_B}{R_B}  \qquad\qquad I_C = \dfrac{V_{CC} - V_C}{R_C} \qquad\qquad I_E = \dfrac{V_E}{R_E}
+  \end{equation*}
+  \begin{align}
+    I_E &= I_B + I_C \nonumber \\
+    \dfrac{V_E}{R_E} &= \dfrac{V_{BB} - V_B}{R_B} - \dfrac{V_{CC} - V_C}{R_C} \label{eq:t10-5a} \\
+    V_{CE} &= V_C - V_E \implies V_C = V_{CE} + V_E \label{eq:t10-5b} \\
+    V_{BE} &= V_B - V_E \implies V_B = V_{BE} + V_E \label{eq:t10-5c} 
+  \end{align}
+  Replacing \eqref{eq:t10-5b} and \eqref{eq:t10-5c} into \eqref{eq:t10-5a},
+  \begin{align*}
+    \dfrac{V_E}{R_E} &= \dfrac{V_{BB} - V_{BE} - V_E}{R_B} - \dfrac{V_{CC} - V_{CE} - V_E}{R_C} \\
+    V_E\left(\dfrac{1}{R_B} + \dfrac{1}{R_C} + \dfrac{1}{R_E}\right) &= \dfrac{V_{BB} - V_{BE}}{R_B} + \dfrac{V_{CC} - V_{CE}}{R_C} \implies V_E = \SI{3.607}{\volt}
+  \end{align*}
+  Once we know the value of $V_E$, it's possible to determine the operating point of the transistor,
+  \begin{align*}
+    V_B &= V_{BE} + V_E = \SI{4.307}{\volt} \\
+    V_C &= V_{CE} + V_E = \SI{3.807}{\volt} \\
+    I_{BQ} &= \dfrac{V_{BB} - V_B}{R_B} = \SI{169.2}{\micro\ampere} \\
+    I_{CQ} &= \dfrac{V_{CC} - V_C}{R_C} = \SI{819.3}{\micro\ampere} \\
+    V_{CEQ} &= V_{sat} = \SI{0.2}{\volt}
+  \end{align*}
 \end{solution}
 
 \end{document}
